@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 import {
   Select,
   SelectContent,
@@ -18,13 +20,40 @@ export const PaceConverter = ({
   from = "minkm",
   withPredictions = true,
 }: PaceConverterType) => {
+  const [unitFrom, setUnitFrom] = useState(from);
+  function doConversions() {}
   return (
     <>
       <section className="flex">
-        <Input type="string" placeholder="05:30"></Input>
-        <Select>
+        {unitFrom === "minkm" ? (
+          <>
+            <Input type="number" placeholder="minutes"></Input>
+            <Input type="number" placeholder="seconds"></Input>
+          </>
+        ) : null}
+        {unitFrom === "minmi" ? (
+          <>
+            <Input type="number" placeholder="minutes"></Input>
+            <Input type="number" placeholder="seconds"></Input>
+          </>
+        ) : null}
+        {unitFrom === "kph" ? (
+          <>
+            <Input type="number" placeholder="kph"></Input>
+          </>
+        ) : null}
+        {unitFrom === "miph" ? (
+          <>
+            <Input type="number" placeholder="kph"></Input>
+          </>
+        ) : null}
+        <Select
+          onValueChange={value => {
+            setUnitFrom(value);
+          }}
+        >
           <SelectTrigger className="w-40">
-            <SelectValue placeholder={from} />
+            <SelectValue placeholder={unitFrom} />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="minkm">min/km</SelectItem>
@@ -33,6 +62,12 @@ export const PaceConverter = ({
             <SelectItem value="miph">Miph</SelectItem>
           </SelectContent>
         </Select>
+        <Button
+          onClick={doConversions}
+          className="bg-slate-800 text-white hover:bg-slate-900"
+        >
+          Convert
+        </Button>
       </section>
       <Separator
         className="bg-gray-300 my-4"
