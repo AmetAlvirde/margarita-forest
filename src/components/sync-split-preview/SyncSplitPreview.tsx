@@ -6,8 +6,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../src/components/ui/card";
-import { ChartContainer } from "../src/components/ui/chart";
+} from "../ui/card";
+import { ChartContainer } from "../ui/chart";
 
 export const SyncSplitPreview = () => {
   return (
