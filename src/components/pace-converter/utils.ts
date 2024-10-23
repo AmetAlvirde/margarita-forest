@@ -9,6 +9,16 @@ export function decimalToSexagecimal(decimalMinutes: number) {
     .padStart(2, "0")}`;
 }
 
+export function formatSpeedPerHour(base: string) {
+  const speedSplit = base.toString().split(".");
+  if (speedSplit[0].length !== 1) {
+    return base;
+  }
+  speedSplit[0] = `0${speedSplit[0]}.`;
+
+  return speedSplit.join("");
+}
+
 export function getConversions({
   from = "minkm",
   minutes = "",
@@ -31,8 +41,10 @@ export function getConversions({
 
       return {
         minmi: decimalToSexagecimal(totalMinutes / kmToMiles),
-        mih: Number((60 / totalMinutes) * kmToMiles).toFixed(2),
-        kmh: Number(60 / totalMinutes).toFixed(2),
+        mih: formatSpeedPerHour(
+          Number((60 / totalMinutes) * kmToMiles).toFixed(2)
+        ),
+        kmh: formatSpeedPerHour(Number(60 / totalMinutes).toFixed(2)),
       };
     }
 
@@ -42,8 +54,10 @@ export function getConversions({
 
       return {
         minkm: decimalToSexagecimal(Number(totalMinutes) / milesToKm),
-        kmh: ((60 / Number(totalMinutes)) * milesToKm).toFixed(2),
-        mih: (60 / Number(totalMinutes)).toFixed(2),
+        kmh: formatSpeedPerHour(
+          ((60 / Number(totalMinutes)) * milesToKm).toFixed(2)
+        ),
+        mih: formatSpeedPerHour((60 / Number(totalMinutes)).toFixed(2)),
       };
     }
     case "kmh": {
@@ -55,7 +69,7 @@ export function getConversions({
         minmi: decimalToSexagecimal(
           60 / (Number(speedPerHour) * Number(kmToMiles))
         ),
-        mih: Number(Number(speedPerHour) * kmToMiles).toFixed(2),
+        mih: formatSpeedPerHour((Number(speedPerHour) * kmToMiles).toFixed(2)),
       };
     }
     case "mih": {
@@ -65,7 +79,7 @@ export function getConversions({
       return {
         minkm: decimalToSexagecimal(60 / (Number(speedPerHour) * milesToKm)),
         minmi: decimalToSexagecimal(60 / Number(speedPerHour)),
-        kmh: Number(Number(speedPerHour) * milesToKm).toFixed(2),
+        kmh: formatSpeedPerHour((Number(speedPerHour) * milesToKm).toFixed(2)),
       };
     }
     default:

@@ -22,8 +22,8 @@ describe("Utils for <PaceConverter>: decimalToSexagesimal, getConversions", () =
       })
     ).toStrictEqual({
       minmi: "12:04",
-      mih: "4.97",
-      kmh: "8.00",
+      mih: "04.97",
+      kmh: "08.00",
     });
   });
 
@@ -36,8 +36,8 @@ describe("Utils for <PaceConverter>: decimalToSexagesimal, getConversions", () =
       })
     ).toStrictEqual({
       minkm: "06:23",
-      mih: "5.84",
-      kmh: "9.41",
+      mih: "05.84",
+      kmh: "09.41",
     });
   });
 
@@ -62,7 +62,7 @@ describe("Utils for <PaceConverter>: decimalToSexagesimal, getConversions", () =
     ).toStrictEqual({
       minkm: "04:10",
       minmi: "06:42",
-      mih: "8.95",
+      mih: "08.95",
     });
   });
 

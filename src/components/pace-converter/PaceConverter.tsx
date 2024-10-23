@@ -14,8 +14,8 @@ import { getConversions } from "./utils";
 type ConversionResults = {
   minmi?: string;
   minkm?: string;
-  kmh?: number;
-  mih?: number;
+  kmh?: string;
+  mih?: string;
 };
 
 export const PaceConverter = () => {
@@ -37,8 +37,8 @@ export const PaceConverter = () => {
     setConversionResults({
       minkm,
       minmi,
-      kmh: Number(kmh),
-      mih: Number(mih),
+      kmh,
+      mih,
     });
   }
 
@@ -46,9 +46,9 @@ export const PaceConverter = () => {
     setUnitFrom(newUnit);
     setConversionResults({
       minmi: "",
-      kmh: 0,
+      kmh: "",
       minkm: "",
-      mih: 0,
+      mih: "",
     });
 
     if (newUnit === "minkm" || newUnit === "minmi") {
@@ -61,10 +61,11 @@ export const PaceConverter = () => {
 
   return (
     <>
-      <section className="flex">
+      <section className="flex flex-col">
         {unitFrom === "minkm" || unitFrom === "minmi" ? (
           <>
             <Input
+              className="w-60 my-2"
               id="minutes"
               value={minutes}
               onChange={e => setMinutes(e.target.value)}
@@ -72,6 +73,7 @@ export const PaceConverter = () => {
               placeholder="minutes"
             ></Input>
             <Input
+              className="w-60 my-2"
               id="second"
               value={seconds}
               onChange={e => setSeconds(e.target.value)}
@@ -83,6 +85,7 @@ export const PaceConverter = () => {
         {unitFrom === "kmh" || unitFrom === "mih" ? (
           <>
             <Input
+              className="w-60"
               value={speedPerHour}
               onChange={e => setspeedPerHour(e.target.value)}
               id="ph-time"
@@ -92,7 +95,7 @@ export const PaceConverter = () => {
           </>
         ) : null}
         <Select onValueChange={handleUnitChange}>
-          <SelectTrigger className="w-40">
+          <SelectTrigger className="w-60 my-2">
             <SelectValue placeholder={unitFrom} />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -103,52 +106,57 @@ export const PaceConverter = () => {
           </SelectContent>
         </Select>
         <Button
-          className="bg-slate-800 text-white hover:bg-slate-900"
+          className="bg-slate-800 text-white hover:bg-slate-900 my-2"
           onClick={triggerConversion}
         >
           Convert
         </Button>
       </section>
-      <Separator
-        className="my-4 bg-gray-300"
-        orientation="horizontal"
-      ></Separator>
-      <section>
-        <ul>
-          {conversionResults?.minkm ? (
-            <li>
-              <span className="text-3xl font-mono px-1">
-                {conversionResults.minkm}
-              </span>
-              <span className="text-md font-light px-1">min/km</span>
-            </li>
-          ) : null}
-          {conversionResults?.minmi ? (
-            <li>
-              <span className="text-3xl font-mono px-1">
-                {conversionResults?.minmi}
-              </span>
-              <span className="text-md font-light px-1">min/mi</span>
-            </li>
-          ) : null}
-          {conversionResults?.mih ? (
-            <li>
-              <span className="text-3xl font-mono px-1">
-                {conversionResults?.mih}
-              </span>
-              <span className="text-md font-light px-1">mi/h</span>
-            </li>
-          ) : null}
-          {conversionResults?.kmh ? (
-            <li>
-              <span className="text-3xl font-mono px-1">
-                {conversionResults?.kmh}
-              </span>
-              <span className="text-md font-light px-1">km/h</span>
-            </li>
-          ) : null}
-        </ul>
-      </section>
+      {conversionResults ? (
+        <>
+          <Separator
+            className="my-4 bg-gray-300"
+            orientation="horizontal"
+          ></Separator>
+
+          <section>
+            <ul>
+              {conversionResults?.minkm ? (
+                <li>
+                  <span className="text-3xl font-mono px-1">
+                    {conversionResults.minkm}
+                  </span>
+                  <span className="text-md font-light px-1">min/km</span>
+                </li>
+              ) : null}
+              {conversionResults?.minmi ? (
+                <li>
+                  <span className="text-3xl font-mono px-1">
+                    {conversionResults?.minmi}
+                  </span>
+                  <span className="text-md font-light px-1">min/mi</span>
+                </li>
+              ) : null}
+              {conversionResults?.mih ? (
+                <li>
+                  <span className="text-3xl font-mono px-1">
+                    {conversionResults?.mih}
+                  </span>
+                  <span className="text-md font-light px-1">mi/h</span>
+                </li>
+              ) : null}
+              {conversionResults?.kmh ? (
+                <li>
+                  <span className="text-3xl font-mono px-1">
+                    {conversionResults?.kmh}
+                  </span>
+                  <span className="text-md font-light px-1">km/h</span>
+                </li>
+              ) : null}
+            </ul>
+          </section>
+        </>
+      ) : null}
     </>
   );
 };
