@@ -31,7 +31,7 @@ export const PaceConverter = ({
   const [unitFrom, setUnitFrom] = useState(from);
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("");
-  const [perHourTime, setPerHourTime] = useState("");
+  const [speedPerHour, setspeedPerHour] = useState("");
   const [conversionResults, setConversionResults] =
     useState<ConversionResults>();
 
@@ -40,7 +40,7 @@ export const PaceConverter = ({
       from: unitFrom,
       minutes,
       seconds,
-      perHourTime,
+      speedPerHour: speedPerHour,
     });
 
     setConversionResults({
@@ -75,8 +75,8 @@ export const PaceConverter = ({
         {unitFrom === "kmh" || unitFrom === "mih" ? (
           <>
             <Input
-              value={perHourTime}
-              onChange={e => setPerHourTime(e.target.value)}
+              value={speedPerHour}
+              onChange={e => setspeedPerHour(e.target.value)}
               id="ph-time"
               type="number"
               placeholder="8.5"

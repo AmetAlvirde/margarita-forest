@@ -13,17 +13,16 @@ export function getConversions({
   from = "minkm",
   minutes = "",
   seconds = "",
-  perHourTime = "",
+  speedPerHour = "",
 }: {
   from: string;
   minutes?: string;
   seconds?: string;
-  perHourTime?: string;
+  speedPerHour?: string;
 }) {
   const kmToMiles = 0.621371;
   const milesToKm = 1.60934;
-  const totalMinutesPerMile = Number(minutes) + Number(seconds) / 60;
-  const totalMinutesPerKm = Number(minutes) + Number(seconds) / 60;
+  const totalMinutes = Number(minutes) + Number(seconds) / 60;
 
   switch (from) {
     case "minkm": {
@@ -31,9 +30,9 @@ export function getConversions({
         throw new Error("You need to enter minutes and seconds");
 
       return {
-        minmi: decimalToSexagecimal(totalMinutesPerKm / kmToMiles),
-        mih: Number((60 / totalMinutesPerKm) * kmToMiles).toFixed(2),
-        kmh: Number(60 / totalMinutesPerKm).toFixed(2),
+        minmi: decimalToSexagecimal(totalMinutes / kmToMiles),
+        mih: Number((60 / totalMinutes) * kmToMiles).toFixed(2),
+        kmh: Number(60 / totalMinutes).toFixed(2),
       };
     }
 
@@ -42,32 +41,34 @@ export function getConversions({
         throw new Error("You need to enter minutes and seconds");
 
       return {
-        minkm: decimalToSexagecimal(Number(totalMinutesPerMile) * milesToKm),
-        kmh: ((60 / Number(totalMinutesPerMile)) * milesToKm).toFixed(2),
-        mih: (60 / Number(totalMinutesPerMile)).toFixed(2),
+        minkm: decimalToSexagecimal(Number(totalMinutes) / milesToKm),
+        kmh: ((60 / Number(totalMinutes)) * milesToKm).toFixed(2),
+        mih: (60 / Number(totalMinutes)).toFixed(2),
       };
     }
     case "kmh": {
-      if (!perHourTime) throw new Error("You need to enter the per hour time");
+      if (!speedPerHour) throw new Error("You need to enter the per hour time");
 
       return {
-        minkm: decimalToSexagecimal(60 / Number(perHourTime)),
+        minkm: decimalToSexagecimal(60 / Number(speedPerHour)),
         minmi: decimalToSexagecimal(
-          60 / (Number(perHourTime) * Number(kmToMiles))
+          60 / (Number(speedPerHour) * Number(kmToMiles))
         ),
-        mih: Number(Number(perHourTime) * kmToMiles).toFixed(2),
+        mih: Number(Number(speedPerHour) * kmToMiles).toFixed(2),
       };
     }
     case "mih": {
-      if (!perHourTime) throw new Error("You need to enter the per hour time");
+      if (!speedPerHour) throw new Error("You need to enter the per hour time");
 
       return {
-        minkm: decimalToSexagecimal(60 / (Number(perHourTime) * milesToKm)),
-        minmi: decimalToSexagecimal(60 / Number(perHourTime)),
-        kmh: Number(Number(perHourTime) * milesToKm).toFixed(2),
+        minkm: decimalToSexagecimal(60 / (Number(speedPerHour) * milesToKm)),
+        minmi: decimalToSexagecimal(60 / Number(speedPerHour)),
+        kmh: Number(Number(speedPerHour) * milesToKm).toFixed(2),
       };
     }
     default:
-      throw new Error("You need to enter the per hour time");
+      throw new Error(
+        "You need to choose a valid case(mih, kmh, minmi, minkm)"
+      );
   }
 }
