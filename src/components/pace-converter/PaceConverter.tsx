@@ -40,7 +40,7 @@ export const PaceConverter = ({
       from: unitFrom,
       minutes,
       seconds,
-      speedPerHour: speedPerHour,
+      speedPerHour,
     });
 
     setConversionResults({

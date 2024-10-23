@@ -47,7 +47,8 @@ export function getConversions({
       };
     }
     case "kmh": {
-      if (!speedPerHour) throw new Error("You need to enter the per hour time");
+      if (!speedPerHour)
+        throw new Error("You need to enter the speed per hour");
 
       return {
         minkm: decimalToSexagecimal(60 / Number(speedPerHour)),
@@ -58,7 +59,8 @@ export function getConversions({
       };
     }
     case "mih": {
-      if (!speedPerHour) throw new Error("You need to enter the per hour time");
+      if (!speedPerHour)
+        throw new Error("You need to enter the speed per hour");
 
       return {
         minkm: decimalToSexagecimal(60 / (Number(speedPerHour) * milesToKm)),

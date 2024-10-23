@@ -2,11 +2,15 @@ import { expect, describe, test } from "vitest";
 import { getConversions, decimalToSexagecimal } from "./utils";
 
 describe("Utils for <PaceConverter>: decimalToSexagesimal, getConversions", () => {
-  test("decimalToSexagesimal", () => {
+  test("decimalToSexagesimal conversion battery", () => {
     expect(decimalToSexagecimal(3.75)).toEqual("03:45");
     expect(decimalToSexagecimal(5.55)).toEqual("05:33");
     expect(decimalToSexagecimal(10.25)).toEqual("10:15");
     expect(decimalToSexagecimal(8.1)).toEqual("08:06");
+  });
+
+  test("edge case for decimalToSexagesimal: seconds === 60", () => {
+    expect(decimalToSexagecimal(10.999)).toEqual("11:00");
   });
 
   test("conversions from min/km", () => {
@@ -66,5 +70,27 @@ describe("Utils for <PaceConverter>: decimalToSexagesimal, getConversions", () =
     expect(() =>
       getConversions({ from: "kph", perHourSpeed: "12.2" })
     ).toThrowError("You need to choose a valid case(mih, kmh, minmi, minkm)");
+  });
+
+  test("getConversions throws when `minutes` or `seconds` aren't passed on minkm", () => {
+    expect(() =>
+      getConversions({ from: "minkm", perHourSpeed: "12.2" })
+    ).toThrowError("You need to enter minutes and seconds");
+  });
+
+  test("getConversions throws when `minutes` or `seconds` aren't passed on minmi", () => {
+    expect(() => getConversions({ from: "minmi", minutes: "4" })).toThrowError(
+      "You need to enter minutes and seconds"
+    );
+  });
+  test("getConversions throws when `speedPerHour` is not passed on mih", () => {
+    expect(() => getConversions({ from: "mih", seconds: "12" })).toThrowError(
+      "You need to enter the speed per hour"
+    );
+  });
+  test("getConversions throws when `speedPerHour` is not passed on kmh", () => {
+    expect(() => getConversions({ from: "kmh", minutes: "5" })).toThrowError(
+      "You need to enter the speed per hour"
+    );
   });
 });
