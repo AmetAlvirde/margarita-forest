@@ -61,6 +61,7 @@ describe("Utils for <PaceConverter>: decimalToSexagesimal, getConversions", () =
       mih: "8.95",
     });
   });
+
   test("getConversions throws when `from` property is not valid (kmh, mih, minmi, minkm)", () => {
     expect(() =>
       getConversions({ from: "kph", perHourSpeed: "12.2" })
