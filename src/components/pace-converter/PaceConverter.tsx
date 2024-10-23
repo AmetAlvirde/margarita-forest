@@ -51,6 +51,23 @@ export const PaceConverter = ({
     });
   }
 
+  function handleUnitChange(newUnit: string) {
+    setUnitFrom(newUnit);
+    setConversionResults({
+      minmi: "",
+      kmh: 0,
+      minkm: "",
+      mih: 0,
+    });
+
+    if (newUnit === "minkm" || newUnit === "minmi") {
+      setspeedPerHour("");
+    } else {
+      setMinutes("");
+      setSeconds("");
+    }
+  }
+
   return (
     <>
       <section className="flex">
@@ -83,11 +100,7 @@ export const PaceConverter = ({
             ></Input>
           </>
         ) : null}
-        <Select
-          onValueChange={value => {
-            setUnitFrom(value);
-          }}
-        >
+        <Select onValueChange={handleUnitChange}>
           <SelectTrigger className="w-40">
             <SelectValue placeholder={unitFrom} />
           </SelectTrigger>
@@ -119,7 +132,7 @@ export const PaceConverter = ({
               <span className="text-md font-light px-1">min/km</span>
             </li>
           ) : null}
-          {conversionResults?.kmh ? (
+          {conversionResults?.minmi ? (
             <li>
               <span className="text-3xl font-mono px-1">
                 {conversionResults?.minmi}
