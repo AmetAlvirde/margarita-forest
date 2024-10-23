@@ -1,50 +1,40 @@
-# React + TypeScript + Vite
+# Margarita Forest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+When I was younger, an old friend who was my boss, introduced me to the
+"Margarita" concept. He was the leader of our team and we wanted to create apps
+that could eventually evolve into a startup, so we tried to be as fast paced as
+possible
 
-Currently, two official plugins are available:
+So one the, while brainstorming about a new idea, we got to the most feared
+stage of the process, the vast majority of ideas cannot withstand the
+ruthlessness of the following questions:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+"So... What do we name it? is it registered? are its social network
+handles free?"
 
-## Expanding the ESLint configuration
+We were diving into a freezing spiral when he said:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Margarita.
 
-- Configure the top-level `parserOptions` property like this:
+Let's say we name it "Margarita" and we have all the domains and handles. This
+is a good idea, we need to keep moving
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+And Margarita it was. We corrected course and started discussing about features
+and bussines models. I don't remember if we ended up building that specific
+idea, but the important idea of that experience, was the so called: "Project
+Margarita"
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+This is the Margarita Forest
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+A forest of ideas for components, apps and products that live without the
+burden of knowledge. Free of constant freezing decisions on infrastructure,
+architecture or tooling, free to have known bugs and quirks, because that is
+not important
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+The most important goal of this forest, is to be creative and free of judgement.
+To write code frequently, so experiments can be published as soon as possible
+and get immediate feedback
+
+To give ideas a high level of importance, because not all ideas will evolve
+into a product, but every idea that gets to reality, got there because it
+was treated with a high level of importance.
