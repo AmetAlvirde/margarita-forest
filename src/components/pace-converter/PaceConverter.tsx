@@ -11,24 +11,15 @@ import {
 import { Separator } from "../ui/separator";
 import { getConversions } from "./utils";
 
-type PaceConverterType = {
-  from?: string;
-  to?: string;
-  view?: string;
-  withPredictions?: boolean;
-};
-
 type ConversionResults = {
   minmi?: string;
   minkm?: string;
   kmh?: number;
   mih?: number;
 };
-export const PaceConverter = ({
-  from = "minkm",
-  withPredictions = false,
-}: PaceConverterType) => {
-  const [unitFrom, setUnitFrom] = useState(from);
+
+export const PaceConverter = () => {
+  const [unitFrom, setUnitFrom] = useState("minkm");
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("");
   const [speedPerHour, setspeedPerHour] = useState("");
@@ -158,12 +149,6 @@ export const PaceConverter = ({
           ) : null}
         </ul>
       </section>
-
-      {withPredictions ? (
-        <section>
-          <h2 className="text-3xl">Race predictions</h2>
-        </section>
-      ) : null}
     </>
   );
 };
