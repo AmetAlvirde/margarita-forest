@@ -61,11 +61,11 @@ export const PaceConverter = () => {
 
   return (
     <>
-      <section className="flex flex-col">
+      <section className="flex flex-col min-w-[280px] md:flex-row md:flex-wrap">
         {unitFrom === "minkm" || unitFrom === "minmi" ? (
-          <>
+          <div className="flex flex-col md:flex-row md:w-full">
             <Input
-              className="w-60 my-2"
+              className="h-12 md:mr-1 my-2"
               id="minutes"
               value={minutes}
               onChange={e => setMinutes(e.target.value)}
@@ -73,29 +73,27 @@ export const PaceConverter = () => {
               placeholder="minutes"
             ></Input>
             <Input
-              className="w-60 my-2"
+              className="h-12 my-2 md:ml-1 "
               id="second"
               value={seconds}
               onChange={e => setSeconds(e.target.value)}
               type="number"
               placeholder="seconds"
             ></Input>
-          </>
+          </div>
         ) : null}
         {unitFrom === "kmh" || unitFrom === "mih" ? (
-          <>
-            <Input
-              className="w-60"
-              value={speedPerHour}
-              onChange={e => setspeedPerHour(e.target.value)}
-              id="ph-time"
-              type="number"
-              placeholder="8.5"
-            ></Input>
-          </>
+          <Input
+            className="h-12 my-2"
+            value={speedPerHour}
+            onChange={e => setspeedPerHour(e.target.value)}
+            id="ph-time"
+            type="number"
+            placeholder="8.5"
+          ></Input>
         ) : null}
         <Select onValueChange={handleUnitChange}>
-          <SelectTrigger className="w-60 my-2">
+          <SelectTrigger className="h-12 my-2">
             <SelectValue placeholder={unitFrom} />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -106,7 +104,8 @@ export const PaceConverter = () => {
           </SelectContent>
         </Select>
         <Button
-          className="bg-slate-800 text-white hover:bg-slate-900 my-2"
+          className="h-14 md:h-12 md:w-full my-2"
+          variant="outline"
           onClick={triggerConversion}
         >
           Convert
@@ -120,37 +119,37 @@ export const PaceConverter = () => {
           ></Separator>
 
           <section>
-            <ul>
+            <ul className="flex flex-wrap">
               {conversionResults?.minkm ? (
-                <li>
-                  <span className="text-3xl font-mono px-1">
+                <li className="w-full md:w-1/3 my-2 md:px-2">
+                  <span className="text-3xl font-mono">
                     {conversionResults.minkm}
                   </span>
-                  <span className="text-md font-light px-1">min/km</span>
+                  <span className="text-md font-light ml-1">min/km</span>
                 </li>
               ) : null}
               {conversionResults?.minmi ? (
-                <li>
-                  <span className="text-3xl font-mono px-1">
+                <li className="w-full md:w-1/3 my-2 md:px-2">
+                  <span className="text-3xl font-mono">
                     {conversionResults?.minmi}
                   </span>
-                  <span className="text-md font-light px-1">min/mi</span>
+                  <span className="text-md font-light ml-1">min/mi</span>
                 </li>
               ) : null}
               {conversionResults?.mih ? (
-                <li>
-                  <span className="text-3xl font-mono px-1">
+                <li className="w-full md:w-1/3 my-2 md:px-2">
+                  <span className="text-3xl font-mono">
                     {conversionResults?.mih}
                   </span>
-                  <span className="text-md font-light px-1">mi/h</span>
+                  <span className="text-md font-light ml-1">mi/h</span>
                 </li>
               ) : null}
               {conversionResults?.kmh ? (
-                <li>
-                  <span className="text-3xl font-mono px-1">
+                <li className="w-full md:w-1/3 my-2 md:px-2">
+                  <span className="text-3xl font-mono">
                     {conversionResults?.kmh}
                   </span>
-                  <span className="text-md font-light px-1">km/h</span>
+                  <span className="text-md font-light ml-1">km/h</span>
                 </li>
               ) : null}
             </ul>
